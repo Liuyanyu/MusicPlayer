@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group
+        android:id="@+id/group_settings"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/main_navigation_wifi"
+            android:title="@string/menu_switch_wifi"
+            app:actionLayout="@layout/menu_switch_wifi" />
+
+        <item
+            android:id="@+id/main_navigation_timer"
+            android:title="@string/menu_switch_timer"
+            app:actionLayout="@layout/menu_switch_timer" />
+
+        <item
+            android:id="@+id/main_navigation_item1"
+            android:title="@string/menu_item_1" />
+        <item
+            android:id="@+id/main_navigation_item2"
+            android:title="@string/menu_item_2" />
+        <item
+            android:id="@+id/main_navigation_item3"
+            android:title="@string/menu_item_3" />
+        <item
+            android:id="@+id/main_navigation_exit"
+            android:title="@string/menu_item_exit" />
+    </group>
+
+
+</menu>

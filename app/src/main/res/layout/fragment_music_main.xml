@@ -1,6 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:descendantFocusability="blocksDescendants"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/music_main_fragment_card_lay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/music_main_fragment_card_local"
+                    android:layout_width="@dimen/music_fragment_card_width"
+                    android:layout_height="@dimen/music_fragment_card_height"
+                    app:cardBackgroundColor="@color/music_fragment_card_bg"
+                    app:cardCornerRadius="@dimen/music_fragment_card_radius"
+                    app:cardElevation="@dimen/music_fragment_card_elevation"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/fragment_music_main_card_local" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/music_main_fragment_card_remote"
+                    android:layout_width="@dimen/music_fragment_card_width"
+                    android:layout_height="@dimen/music_fragment_card_height"
+                    app:cardBackgroundColor="@color/music_fragment_card_bg"
+                    app:cardCornerRadius="@dimen/music_fragment_card_radius"
+                    app:cardElevation="@dimen/music_fragment_card_elevation"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/fragment_music_main_card_remote" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/music_main_fragment_card_download"
+                    android:layout_width="@dimen/music_fragment_card_width"
+                    android:layout_height="@dimen/music_fragment_card_height"
+                    app:cardBackgroundColor="@color/music_fragment_card_bg"
+                    app:cardCornerRadius="@dimen/music_fragment_card_radius"
+                    app:cardElevation="@dimen/music_fragment_card_elevation"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/fragment_music_main_card_download" />
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/music_main_fragment_card_lay2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/music_main_fragment_card_lay"
+                android:gravity="center_horizontal">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/music_main_fragment_card_lately"
+                    android:layout_width="@dimen/music_fragment_card_width"
+                    android:layout_height="@dimen/music_fragment_card_height"
+                    app:cardBackgroundColor="@color/music_fragment_card_bg"
+                    app:cardCornerRadius="@dimen/music_fragment_card_radius"
+                    app:cardElevation="@dimen/music_fragment_card_elevation"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/fragment_music_main_card_lately" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/music_main_fragment_card_like"
+                    android:layout_width="@dimen/music_fragment_card_width"
+                    android:layout_height="@dimen/music_fragment_card_height"
+                    app:cardBackgroundColor="@color/music_fragment_card_bg"
+                    app:cardCornerRadius="@dimen/music_fragment_card_radius"
+                    app:cardElevation="@dimen/music_fragment_card_elevation"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/fragment_music_main_card_like" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/music_main_fragment_card_recommend"
+                    android:layout_width="@dimen/music_fragment_card_width"
+                    android:layout_height="@dimen/music_fragment_card_height"
+                    app:cardBackgroundColor="@color/music_fragment_card_bg"
+                    app:cardCornerRadius="@dimen/music_fragment_card_radius"
+                    app:cardElevation="@dimen/music_fragment_card_elevation"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/fragment_music_main_card_recommend" />
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/music_main_fragment_song_list_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/music_main_fragment_card_lay2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="歌单"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="30sp" />
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/fragment_music_main_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/music_main_fragment_song_list_title"
+                android:dividerHeight="1dp"
+                android:scrollbars="vertical" />
+        </RelativeLayout>
+    </ScrollView>
 </LinearLayout>

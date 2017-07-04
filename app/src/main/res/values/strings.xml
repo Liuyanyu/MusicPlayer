@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">Text_Music</string>
+    <string name="splash_txt">跳过</string>
+
+    <string name="menu_switch_wifi">仅wifi联网</string>
+    <string name="menu_switch_timer">定时关闭</string>
+    <string name="menu_item_1">item1</string>
+    <string name="menu_item_2">item2</string>
+    <string name="menu_item_3">item3</string>
+    <string name="menu_item_exit">退出</string>
+
+
+    <string name="fragment_music_main_card_local">本地音乐</string>
+    <string name="fragment_music_main_card_remote">网络音乐</string>
+    <string name="fragment_music_main_card_download">已下载</string>
+    <string name="fragment_music_main_card_lately">最近播放</string>
+    <string name="fragment_music_main_card_like">我喜欢的</string>
+    <string name="fragment_music_main_card_recommend">为您推荐</string>
+
+
+    <array name="fragment_list">
+        <item>音乐</item>
+        <item>MV</item>
+        <item>直播</item>
+    </array>
 </resources>

@@ -24,7 +24,7 @@ public class MainActivity extends BaseActivity {
             setTranslucentStatus(true);
         }
         setContentView(R.layout.activity_main);
-        Log.e("1234","wer");
+        Log.e("1234","52452");
         setFragment();
 
     }

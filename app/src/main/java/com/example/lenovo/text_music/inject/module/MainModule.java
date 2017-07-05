@@ -12,6 +12,7 @@ import dagger.Provides;
 /**
  * Created by lenovo on 2017/7/4.
  */
+
 @Module
 public class MainModule {
     @Provides

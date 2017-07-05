@@ -21,7 +21,7 @@ public class SplashPresenterImpl implements SplashContract.Presenter {
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            super.handleMessage(msg);
+//            super.handleMessage(msg);
             view.intent2Act();
         }
     };

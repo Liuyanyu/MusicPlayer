@@ -12,6 +12,9 @@ import android.widget.LinearLayout;
 import com.example.lenovo.text_music.R;
 import com.example.lenovo.text_music.inject.component.DaggerMainMusicAdapterComponent;
 import com.example.lenovo.text_music.inject.module.MainMusicAdapterModule;
+import com.example.lenovo.text_music.presenter.contract.MusicMainContract;
+import com.example.lenovo.text_music.presenter.impl.MusicMainParsenter;
+import com.example.lenovo.text_music.ui.activity.MainActivity;
 import com.example.lenovo.text_music.ui.adapter.SongListAdapter;
 import com.example.lenovo.text_music.view.ScrollRecyclerLayoutManager;
 
@@ -28,7 +31,7 @@ import butterknife.Unbinder;
  * Created by lenovo on 2017/7/4.
  */
 
-public class MainMusicFragment extends BaseFragment {
+public class MainMusicFragment extends BaseFragment implements MusicMainContract.View {
     @BindView(R.id.music_main_fragment_card_local)
     CardView musicMainFragmentCardLocal;
     @BindView(R.id.music_main_fragment_card_remote)
@@ -53,6 +56,8 @@ public class MainMusicFragment extends BaseFragment {
 
     @Inject
     SongListAdapter songListAdapter;
+    @Inject
+    MusicMainParsenter parsenter;
 
     ArrayList<String> list;
 
@@ -68,7 +73,11 @@ public class MainMusicFragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         list = getList();
-        DaggerMainMusicAdapterComponent.builder().mainMusicAdapterModule(new MainMusicAdapterModule(getActivity(), list)).build().inject(this);
+        DaggerMainMusicAdapterComponent
+                .builder()
+                .mainMusicAdapterModule(new MainMusicAdapterModule(getActivity(), list,this))
+                .build()
+                .inject(this);
         setListView();
     }
 
@@ -108,7 +117,34 @@ public class MainMusicFragment extends BaseFragment {
 
     @OnClick({R.id.music_main_fragment_card_local, R.id.music_main_fragment_card_remote, R.id.music_main_fragment_card_download, R.id.music_main_fragment_card_lately, R.id.music_main_fragment_card_like, R.id.music_main_fragment_card_recommend})
     public void onViewClicked(View view) {
+        int id = 0;
         switch (view.getId()) {
+            case R.id.music_main_fragment_card_local:
+                id = R.id.music_main_fragment_card_local;
+                break;
+            case R.id.music_main_fragment_card_remote:
+                id = R.id.music_main_fragment_card_remote;
+                break;
+            case R.id.music_main_fragment_card_download:
+                id = R.id.music_main_fragment_card_download;
+                break;
+            case R.id.music_main_fragment_card_lately:
+                id = R.id.music_main_fragment_card_lately;
+                break;
+            case R.id.music_main_fragment_card_like:
+                id = R.id.music_main_fragment_card_like;
+                break;
+            case R.id.music_main_fragment_card_recommend:
+                id = R.id.music_main_fragment_card_recommend;
+                break;
+        }
+        parsenter.cardEnvnt(id);
+    }
+
+    @Override
+    public void card2new(int id) {
+        ((MainActivity) getParentFragment().getActivity()).intent2local();
+        switch (id) {
             case R.id.music_main_fragment_card_local:
                 break;
             case R.id.music_main_fragment_card_remote:
@@ -122,5 +158,11 @@ public class MainMusicFragment extends BaseFragment {
             case R.id.music_main_fragment_card_recommend:
                 break;
         }
+
+    }
+
+    @Override
+    public void song2new() {
+
     }
 }

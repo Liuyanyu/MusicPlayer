@@ -6,36 +6,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.lenovo.text_music.ui.activity.MainActivity">
+    tools:context="com.example.lenovo.iplay.ui.activity.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorPrimaryDark"
         android:fitsSystemWindows="true"
         android:orientation="vertical">
 
-        <android.support.v7.widget.Toolbar
+        <FrameLayout
+            android:id="@+id/main_pager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            app:navigationIcon="@mipmap/ic_launcher">
+            android:layout_weight="6">
 
-            <android.support.design.widget.TabLayout
-                android:id="@+id/main_tab"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                app:tabIndicatorHeight="@dimen/tablayout_height"
-                app:tabMode="scrollable"
-                app:tabSelectedTextColor="@color/tabSelectedTextColor"
-                app:tabTextColor="@color/tabTextColor" />
-        </android.support.v7.widget.Toolbar>
+        </FrameLayout>
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/main_viewpager"
+        <FrameLayout
+            android:id="@+id/main_buttom"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_launcher" />
+        </FrameLayout>
+
     </LinearLayout>
 
     <android.support.design.widget.NavigationView
@@ -47,4 +46,5 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/navigation_header_layout"
         app:menu="@menu/navigation_menu" />
+
 </android.support.v4.widget.DrawerLayout>

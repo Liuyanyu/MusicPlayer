@@ -3,6 +3,7 @@ package com.example.lenovo.text_music.ui.activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -23,7 +24,7 @@ public class MainActivity extends BaseActivity {
             setTranslucentStatus(true);
         }
         setContentView(R.layout.activity_main);
-
+        Log.e("1234","wer");
         setFragment();
 
     }

@@ -143,9 +143,10 @@ public class MainMusicFragment extends BaseFragment implements MusicMainContract
 
     @Override
     public void card2new(int id) {
-        ((MainActivity) getParentFragment().getActivity()).intent2local();
+
         switch (id) {
             case R.id.music_main_fragment_card_local:
+                ((MainActivity) getParentFragment().getActivity()).intent2local();
                 break;
             case R.id.music_main_fragment_card_remote:
                 break;

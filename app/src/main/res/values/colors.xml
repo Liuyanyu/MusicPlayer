@@ -7,4 +7,5 @@
     <color name="tabSelectedTextColor">#ffffff</color>
     <color name="tabTextColor">#e7b6b6b6</color>
     <color name="music_fragment_card_bg">#e9bd12</color>
+    <color name="fengexian">#dcdcdc</color>
 </resources>

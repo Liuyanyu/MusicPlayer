@@ -17,12 +17,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by lenovo on 2017/7/4.
+ * Created by yinm_pc on 2017/6/30.
  */
 
 public class SongListAdapter extends RecyclerView.Adapter<SongListAdapter.MyViewHolder> {
-
-
     private Context context;
     private ArrayList<String> list;
 
@@ -51,9 +49,9 @@ public class SongListAdapter extends RecyclerView.Adapter<SongListAdapter.MyView
         @BindView(R.id.item_song_list_text)
         TextView itemSongListText;
 
-        public MyViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
+        MyViewHolder(View view) {
+            super(view);
+            ButterKnife.bind(this, view);
         }
     }
 }

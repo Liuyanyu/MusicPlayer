@@ -1,7 +1,7 @@
 package com.example.lenovo.text_music.inject.component;
 
 import com.example.lenovo.text_music.inject.module.MusicLocalListMoudle;
-import com.example.lenovo.text_music.ui.fragment.MainListLocalFragment;
+import com.example.lenovo.text_music.ui.fragment.MusicListLocalFragment;
 
 import dagger.Component;
 
@@ -11,5 +11,13 @@ import dagger.Component;
 
 @Component(modules = MusicLocalListMoudle.class)
 public interface MusicLocalListComponent {
-    void inject(MainListLocalFragment musicListLocalFragment);
+    void inject(MusicListLocalFragment musicListLocalFragment);
 }
+
+
+
+
+
+
+
+

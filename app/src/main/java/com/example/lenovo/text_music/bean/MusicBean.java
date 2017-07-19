@@ -1,4 +1,4 @@
-package com.example.lenovo.text_music.view;
+package com.example.lenovo.text_music.bean;
 
 import android.os.Parcel;
 import android.os.Parcelable;

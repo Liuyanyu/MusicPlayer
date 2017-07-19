@@ -1,4 +1,4 @@
-package com.example.lenovo.text_music.view;
+package com.example.lenovo.text_music;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;

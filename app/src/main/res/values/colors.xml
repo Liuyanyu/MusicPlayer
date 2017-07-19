@@ -6,6 +6,14 @@
 
     <color name="tabSelectedTextColor">#ffffff</color>
     <color name="tabTextColor">#e7b6b6b6</color>
-    <color name="music_fragment_card_bg">#e9bd12</color>
-    <color name="fengexian">#dcdcdc</color>
+
+    <color name="music_fragment_card_bg">#00ffff</color>
+
+    <color name="item_bg">#c7c7c7</color>
+    <color name="item_bg_def">#ffffff</color>
+
+    <color name="remote_xin">#00ff00</color>
+    <color name="remote_hot">#ff4500</color>
+    <color name="remote_chinese">#FF0000</color>
+    <color name="remote_ktv">#6959CD</color>
 </resources>

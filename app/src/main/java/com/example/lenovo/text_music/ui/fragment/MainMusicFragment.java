@@ -1,22 +1,22 @@
 package com.example.lenovo.text_music.ui.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.example.lenovo.text_music.R;
+import com.example.lenovo.text_music.ScrollRecyclerLayoutManager;
 import com.example.lenovo.text_music.inject.component.DaggerMainMusicAdapterComponent;
 import com.example.lenovo.text_music.inject.module.MainMusicAdapterModule;
-import com.example.lenovo.text_music.presenter.contract.MusicMainContract;
-import com.example.lenovo.text_music.presenter.impl.MusicMainParsenter;
+import com.example.lenovo.text_music.presenter.contract.MainMusicContract;
+import com.example.lenovo.text_music.presenter.impl.MainMusicPresenter;
 import com.example.lenovo.text_music.ui.activity.MainActivity;
 import com.example.lenovo.text_music.ui.adapter.SongListAdapter;
-import com.example.lenovo.text_music.view.ScrollRecyclerLayoutManager;
 
 import java.util.ArrayList;
 
@@ -27,44 +27,41 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
+//import com.example.lenovo.iplay.inject.component.DaggerMainMusicAdapterComponent;
+
 /**
- * Created by lenovo on 2017/7/4.
+ * Created by yinm_pc on 2017/6/28.
  */
-
-public class MainMusicFragment extends BaseFragment implements MusicMainContract.View {
+public class MainMusicFragment extends BaseFragment implements MainMusicContract.View {
     @BindView(R.id.music_main_fragment_card_local)
-    CardView musicMainFragmentCardLocal;
+    CardView cardLocal;
     @BindView(R.id.music_main_fragment_card_remote)
-    CardView musicMainFragmentCardRemote;
+    CardView cardRemote;
     @BindView(R.id.music_main_fragment_card_download)
-    CardView musicMainFragmentCardDownload;
-    @BindView(R.id.music_main_fragment_card_lay)
-    LinearLayout musicMainFragmentCardLay;
+    CardView cardDownload;
     @BindView(R.id.music_main_fragment_card_lately)
-    CardView musicMainFragmentCardLately;
+    CardView cardLately;
     @BindView(R.id.music_main_fragment_card_like)
-    CardView musicMainFragmentCardLike;
+    CardView cardLike;
     @BindView(R.id.music_main_fragment_card_recommend)
-    CardView musicMainFragmentCardRecommend;
-    @BindView(R.id.music_main_fragment_card_lay2)
-    LinearLayout musicMainFragmentCardLay2;
-    @BindView(R.id.music_main_fragment_song_list_title)
-    LinearLayout musicMainFragmentSongListTitle;
+    CardView cardRecommend;
     @BindView(R.id.fragment_music_main_list)
-    RecyclerView fragmentMusicMainList;
+    RecyclerView recyclerView;
     Unbinder unbinder;
-
     @Inject
     SongListAdapter songListAdapter;
-    @Inject
-    MusicMainParsenter parsenter;
 
     ArrayList<String> list;
+
+
+    @Inject
+    MainMusicPresenter presenter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_music_main, container, false);
+        //绑定当前页面根布局
         unbinder = ButterKnife.bind(this, view);
         return view;
     }
@@ -73,45 +70,43 @@ public class MainMusicFragment extends BaseFragment implements MusicMainContract
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         list = getList();
+
         DaggerMainMusicAdapterComponent
                 .builder()
-                .mainMusicAdapterModule(new MainMusicAdapterModule(getActivity(), list,this))
+                .mainMusicAdapterModule(new MainMusicAdapterModule(getActivity(), list, this))
                 .build()
                 .inject(this);
+
         setListView();
     }
 
     private void setListView() {
-        fragmentMusicMainList.setAdapter(songListAdapter);
-        fragmentMusicMainList.setLayoutManager(new ScrollRecyclerLayoutManager(getActivity()));
+        recyclerView.setAdapter(songListAdapter);
+        recyclerView.setLayoutManager(new ScrollRecyclerLayoutManager(getActivity()));
         //recyclerView和ScrollView解决冲突方法
-        fragmentMusicMainList.setNestedScrollingEnabled(false);
+        recyclerView.setNestedScrollingEnabled(false);
     }
 
-
+    @NonNull
     private ArrayList<String> getList() {
         ArrayList<String> list = new ArrayList<>();
-        list.add("我想");
-        list.add("当你");
-        list.add("全部都是你");
-        list.add("东京不太热");
-        list.add("一个人的北京");
-        list.add("避难所 ");
-        list.add("歌单");
-        list.add("朋友名义");
-        list.add("眼里只有你");
-        list.add("老街");
-        list.add("飘洋过海来看你");
-        list.add("回忆总想哭");
-        list.add("拜托");
-        list.add("我怀念的");
-        list.add("成都");
+        list.add("歌单1");
+        list.add("歌单2");
+        list.add("歌单3");
+        list.add("歌单4");
+        list.add("歌单5");
+        list.add("歌单6");
+        list.add("歌单7");
+        list.add("歌单8");
+        list.add("歌单9");
+        list.add("歌单10");
         return list;
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        //解除绑定当前页面根布局  fragment中需要调用此方法
         unbinder.unbind();
     }
 
@@ -138,17 +133,17 @@ public class MainMusicFragment extends BaseFragment implements MusicMainContract
                 id = R.id.music_main_fragment_card_recommend;
                 break;
         }
-        parsenter.cardEnvnt(id);
+        presenter.cardEnvnt(id);
     }
 
     @Override
     public void card2new(int id) {
-
         switch (id) {
             case R.id.music_main_fragment_card_local:
                 ((MainActivity) getParentFragment().getActivity()).intent2local();
                 break;
             case R.id.music_main_fragment_card_remote:
+                ((MainActivity) getParentFragment().getActivity()).intent2remote();
                 break;
             case R.id.music_main_fragment_card_download:
                 break;
@@ -159,7 +154,6 @@ public class MainMusicFragment extends BaseFragment implements MusicMainContract
             case R.id.music_main_fragment_card_recommend:
                 break;
         }
-
     }
 
     @Override

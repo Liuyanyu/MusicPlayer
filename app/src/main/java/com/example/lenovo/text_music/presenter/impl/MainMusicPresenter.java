@@ -1,6 +1,6 @@
 package com.example.lenovo.text_music.presenter.impl;
 
-import com.example.lenovo.text_music.presenter.contract.MusicMainContract;
+import com.example.lenovo.text_music.presenter.contract.MainMusicContract;
 
 import javax.inject.Inject;
 
@@ -8,11 +8,11 @@ import javax.inject.Inject;
  * Created by lenovo on 2017/7/5.
  */
 
-public class MusicMainParsenter implements MusicMainContract.Presenter {
-    private MusicMainContract.View view;
+public class MainMusicPresenter implements MainMusicContract.Presenter {
+    private MainMusicContract.View view;
 
     @Inject
-    public MusicMainParsenter(MusicMainContract.View view) {
+    public MainMusicPresenter(MainMusicContract.View view) {
         this.view = view;
     }
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Text_Music</string>
+    <string name="app_name">音乐播放器</string>
     <string name="splash_txt">跳过</string>
 
     <string name="menu_switch_wifi">仅wifi联网</string>
@@ -17,6 +17,10 @@
     <string name="fragment_music_main_card_like">我喜欢的</string>
     <string name="fragment_music_main_card_recommend">为您推荐</string>
 
+    <string name="fragment_remote_list_title_new">新歌榜</string>
+    <string name="fragment_remote_list_title_hot">热歌榜</string>
+    <string name="fragment_remote_list_title_chinese">中文榜</string>
+    <string name="fragment_remote_list_title_ktv">KTV热歌榜</string>
 
     <array name="fragment_list">
         <item>音乐</item>

@@ -6,12 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.lenovo.text_music.ui.activity.MainActivity">
+    tools:context="com.example.lenovo.iplay.ui.activity.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark"
+        android:background="#ffdab9"
         android:fitsSystemWindows="true"
         android:orientation="vertical">
 
@@ -19,7 +19,7 @@
             android:id="@+id/main_pager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="6">
+            android:layout_weight="8">
 
         </FrameLayout>
 
@@ -27,11 +27,11 @@
             android:id="@+id/main_buttom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#00ffff">
+            android:layout_weight="1">
+
+            <include layout="@layout/fragment_music_play" />
 
         </FrameLayout>
-
     </LinearLayout>
 
     <android.support.design.widget.NavigationView
@@ -39,7 +39,7 @@
         android:layout_width="@dimen/navigation_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/colorPrimary"
+        android:background="#bbffff"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/navigation_header_layout"
         app:menu="@menu/navigation_menu" />

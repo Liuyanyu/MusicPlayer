@@ -6,9 +6,10 @@ import com.example.lenovo.text_music.ui.fragment.MainMusicFragment;
 import dagger.Component;
 
 /**
- * Created by lenovo on 2017/7/4.
+ * Created by yinm_pc on 2017/6/28.
  */
+
 @Component(modules = MainMusicAdapterModule.class)
-public interface MainMusicAdapterComponent {
+public interface   MainMusicAdapterComponent {
     void inject(MainMusicFragment activity);
 }

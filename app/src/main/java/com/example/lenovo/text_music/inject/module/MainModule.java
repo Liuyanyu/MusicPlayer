@@ -10,14 +10,14 @@ import dagger.Module;
 import dagger.Provides;
 
 /**
- * Created by lenovo on 2017/7/4.
+ * Created by yinm_pc on 2017/6/28.
  */
 
 @Module
 public class MainModule {
     @Provides
     @Singleton
-    MainMusicFragment providesMainMusicFragment() {
+    MainMusicFragment providesMainFragment() {
         return new MainMusicFragment();
     }
 

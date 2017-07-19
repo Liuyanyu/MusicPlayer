@@ -8,8 +8,9 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 /**
- * Created by lenovo on 2017/7/4.
+ * Created by yinm_pc on 2017/6/28.
  */
+
 @Singleton
 @Component(modules = SplashModule.class)
 public interface SplashComponent {

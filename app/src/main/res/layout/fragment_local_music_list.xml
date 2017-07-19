@@ -2,12 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/localmusic"
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#00ffff">
+        android:background="#e0eeee">
 
         <TextView
             android:id="@+id/music_local_list_title"
@@ -18,5 +19,5 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/music_local_list_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"/>
 </LinearLayout>

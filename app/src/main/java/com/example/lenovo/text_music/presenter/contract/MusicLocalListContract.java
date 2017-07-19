@@ -1,6 +1,6 @@
 package com.example.lenovo.text_music.presenter.contract;
 
-import com.example.lenovo.text_music.view.MusicBean;
+import com.example.lenovo.text_music.bean.MusicBean;
 
 import java.util.ArrayList;
 

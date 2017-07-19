@@ -30,11 +30,11 @@ public class MainFragment extends BaseFragment {
     @BindView(R.id.main_tab)
     TabLayout mainTab;
     @BindView(R.id.main_viewpager)
-    ViewPager mainViewpager;
-
+    ViewPager mViewpager;
     Unbinder unbinder;
 
     private ArrayList<BaseFragment> fragments = new ArrayList<>();
+
     @Inject
     MainMusicFragment musicFragment;
     @Inject
@@ -48,12 +48,12 @@ public class MainFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         unbinder = ButterKnife.bind(this, view);
         return view;
-
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         DaggerMainComponent
                 .builder()
                 .mainModule(new MainModule())
@@ -62,13 +62,14 @@ public class MainFragment extends BaseFragment {
 
         //添加fragment到集合中
         addFragment();
-        //设置viewPager
+        // 设置viewpager
         setViewpager();
+
     }
 
     private void setViewpager() {
-        //初始化适配器
-         FragmentPagerAdapter fragmentPagerAdapter = new FragmentPagerAdapter(getChildFragmentManager()) {
+        // 初始化 适配器
+        FragmentPagerAdapter fragmentPagerAdapter = new FragmentPagerAdapter(getChildFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
                 return fragments.get(position);
@@ -80,13 +81,19 @@ public class MainFragment extends BaseFragment {
             }
 
             //设置pager标题
+            //getResources()获取 value下的值
+            @Override
             public CharSequence getPageTitle(int position) {
-                //获取string.xml中的StringArray的值
+                // 获取 string.xml中的 StringArray的值
                 return getResources().getStringArray(R.array.fragment_list)[position];
             }
         };
-        mainViewpager.setAdapter(fragmentPagerAdapter);
-        mainTab.setupWithViewPager(mainViewpager);
+        // 给viewpager设置适配器
+        mViewpager.setAdapter(fragmentPagerAdapter);
+        // 设置 tablayout和viewpager联动
+        mainTab.setupWithViewPager(mViewpager);
+
+        // 选中标签字体颜色和未选中标签字体颜色
     }
 
     private void addFragment() {

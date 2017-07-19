@@ -6,27 +6,22 @@ import android.os.Message;
 import com.example.lenovo.text_music.presenter.contract.SplashContract;
 
 /**
- * Created by lenovo on 2017/7/4.
+ * splash 的presenter实现类
+ * Created by yinm_pc on 2017/6/28.
  */
 
-public class SplashPresenterImpl implements SplashContract.Presenter {
-    //延时
-    private static final int DELAYED_TIME = 3600;
+public class SplashPresenter implements SplashContract.Presenter {
+    private static final int DELAYED_TIME = 3000;
     private static final int MESSAGE_WHAT = 103;
 
-
     private SplashContract.View view;
-
-    //接到消息并且处理
     private Handler handler = new Handler() {
-        @Override
         public void handleMessage(Message msg) {
-//            super.handleMessage(msg);
             view.intent2Act();
         }
     };
 
-    public SplashPresenterImpl(SplashContract.View view) {
+    public SplashPresenter(SplashContract.View view) {
         this.view = view;
     }
 
@@ -37,9 +32,7 @@ public class SplashPresenterImpl implements SplashContract.Presenter {
 
     @Override
     public void startIntent() {
-        //还没有发送的消息  删除掉消息
         handler.removeMessages(MESSAGE_WHAT);
-        //直接跳转
         view.intent2Act();
     }
 }

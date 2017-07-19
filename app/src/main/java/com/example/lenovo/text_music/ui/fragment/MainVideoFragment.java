@@ -9,13 +9,13 @@ import android.view.ViewGroup;
 import com.example.lenovo.text_music.R;
 
 /**
- * Created by lenovo on 2017/7/4.
+ * Created by yinm_pc on 2017/6/28.
  */
 
-public class MainVideoFragment extends BaseFragment{
+public class MainVideoFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_video_main,container,false);
+        return inflater.inflate(R.layout.fragment_video_main, container, false);
     }
 }

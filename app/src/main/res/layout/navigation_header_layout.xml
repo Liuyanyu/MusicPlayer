@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:scaleType="fitXY"
-        android:src="@drawable/menu_title_bg" />
+        android:src="@drawable/menu_title_bg"
+        android:id="@+id/imageView" />
 
 </LinearLayout>

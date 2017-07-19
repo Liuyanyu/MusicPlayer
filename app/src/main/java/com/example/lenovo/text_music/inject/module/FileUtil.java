@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.provider.MediaStore;
 
-import com.example.lenovo.text_music.view.MusicBean;
+import com.example.lenovo.text_music.bean.MusicBean;
 
 import java.util.ArrayList;
 

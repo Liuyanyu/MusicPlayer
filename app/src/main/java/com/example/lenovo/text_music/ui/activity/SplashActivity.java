@@ -2,6 +2,9 @@ package com.example.lenovo.text_music.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.lenovo.text_music.R;
@@ -15,24 +18,29 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+//import com.example.lenovo.iplay.inject.component.DaggerSplashComponent;
+
 /**
- * butterknife  MVP  mvvm   retrofit请求网络框架  dagger2依赖注入框架   rxjava  rxandroid
- * Created by lenovo on 2017/6/28.
- * a调用b 将a注入到c
+ * 启动页
+ * Created by yinm_pc on 2017/6/28.
  */
 
 public class SplashActivity extends BaseActivity implements SplashContract.View {
 
-    @BindView(R.id.splash_textview_tiaoguo)
-    TextView splashTextviewTiaoguo;
+    @BindView(R.id.splash_txt)
+    TextView splashTxt;
+    @BindView(R.id.splash_img)
+    ImageView splashImg;
 
-    @Inject  //注解
-            SplashContract.Presenter presenter;  //注入
+    //presenter层对象  接口类型
+    @Inject
+    SplashContract.Presenter presenter;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        //绑定当前页面根布局
         ButterKnife.bind(this);
 
         DaggerSplashComponent
@@ -44,22 +52,25 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
         presenter.timingBegin();
     }
 
+    //点击事件
+    @OnClick({R.id.splash_txt, R.id.splash_img})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.splash_txt:
+                //直接跳转
+                presenter.startIntent();
+                break;
+            case R.id.splash_img:
+                break;
+        }
+    }
+
+
+    //跳转方法
     @Override
     public void intent2Act() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         this.finish();
-    }
-
-    //点击事件
-    @OnClick(R.id.splash_textview_tiaoguo)
-    public void onViewClicked() {
-        presenter.startIntent();
-    }
-
-    //返回键
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
     }
 }

@@ -1,5 +1,6 @@
 package com.example.lenovo.text_music.http;
 
+import com.example.lenovo.text_music.bean.RemoteMusicBean;
 import com.example.lenovo.text_music.bean.RemoteMusicListBean;
 import com.example.lenovo.text_music.http.service.RemoteMusicService;
 
@@ -41,6 +42,12 @@ public class HttpUtils {
     public void getRestserver(Callback<RemoteMusicListBean> callback,Map<String,String> map){
         getService();
         Call<RemoteMusicListBean> call = service.getRestserverTing(map);
+        call.enqueue(callback);
+    }
+
+    public void getSongInfo(Callback<RemoteMusicBean> callback, Map<String, String> map) {
+        getService();
+        Call<RemoteMusicBean> call = service.getSongInfo(map);
         call.enqueue(callback);
 
 //        try {

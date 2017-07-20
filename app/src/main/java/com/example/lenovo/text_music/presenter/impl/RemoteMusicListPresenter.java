@@ -3,6 +3,7 @@ package com.example.lenovo.text_music.presenter.impl;
 import android.util.Log;
 
 import com.example.lenovo.text_music.PunlicFlags;
+import com.example.lenovo.text_music.bean.RemoteMusicBean;
 import com.example.lenovo.text_music.bean.RemoteMusicListBean;
 import com.example.lenovo.text_music.http.HttpUtils;
 import com.example.lenovo.text_music.presenter.contract.RemoteMusicListContract;
@@ -52,6 +53,32 @@ public class RemoteMusicListPresenter implements RemoteMusicListContract.Present
 
             }
         }, map);
+    }
+
+    @Override
+    public void getSongInfoByID(String songId) {
+        Map<String, String> map = new HashMap<>();
+        map.put("from", "webapp_music");
+        map.put("method", "baidu.ting.song.playAAC");
+        map.put("format", "json");
+        map.put("calback", "");
+        map.put("songid",songId);
+
+        HttpUtils
+                .getInstance()
+                .getSongInfo(
+                        new Callback<RemoteMusicBean>() {
+                            @Override
+                            public void onResponse(Call call, Response response) {
+                                view.onSongInfo((RemoteMusicBean) response.body());
+                            }
+
+                            @Override
+                            public void onFailure(Call call, Throwable t) {
+                                Log.e(t.getLocalizedMessage(),t.toString());
+                            }
+                        },map)
+        ;
     }
 }
 

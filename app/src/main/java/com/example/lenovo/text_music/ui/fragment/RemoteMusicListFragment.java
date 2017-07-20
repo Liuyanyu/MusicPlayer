@@ -1,5 +1,8 @@
 package com.example.lenovo.text_music.ui.fragment;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,11 +14,14 @@ import android.widget.TextView;
 
 import com.example.lenovo.text_music.PunlicFlags;
 import com.example.lenovo.text_music.R;
+import com.example.lenovo.text_music.bean.RemoteMusicBean;
 import com.example.lenovo.text_music.bean.RemoteMusicListBean;
+import com.example.lenovo.text_music.callback.OnRecyclerItemClick;
 import com.example.lenovo.text_music.inject.component.DaggerRemoteMusicListComponent;
 import com.example.lenovo.text_music.inject.module.RemoteMusicListMpdule;
 import com.example.lenovo.text_music.presenter.contract.RemoteMusicListContract;
 import com.example.lenovo.text_music.presenter.impl.RemoteMusicListPresenter;
+import com.example.lenovo.text_music.ui.activity.MainActivity;
 import com.example.lenovo.text_music.ui.adapter.RemoteMusicListAdapter;
 
 import java.util.ArrayList;
@@ -47,6 +53,8 @@ public class RemoteMusicListFragment extends BaseFragment implements RemoteMusic
     private static final int REQUST_SIZE = 50;
 
     private int requset_size = 0;
+
+    private static int ITEM_D = 2;
 
     @Nullable
     @Override
@@ -84,10 +92,23 @@ public class RemoteMusicListFragment extends BaseFragment implements RemoteMusic
                 break;
         }
         remoteMusicListPresenter.getMusicList(type, requset_size, REQUST_SIZE);
+
+        RemoteMusicListFragment.MyItemDecoration mid = new RemoteMusicListFragment.MyItemDecoration();
+        musicRemoteList.addItemDecoration(mid);
     }
 
     private void setRecyclerView() {
         remoteMusicListAdapter = new RemoteMusicListAdapter(getActivity(), list);
+        remoteMusicListAdapter.setOnRecyclerItemClick(new OnRecyclerItemClick<RemoteMusicListBean.SongListBean>() {
+            @Override
+            public void onClick(RemoteMusicListBean.SongListBean item) {
+                item.getSong_id();
+                //TODO 根据songid 请求歌曲信息
+                remoteMusicListPresenter.getSongInfoByID(item.getSong_id());
+
+            }
+        });
+
         musicRemoteList.setAdapter(remoteMusicListAdapter);
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         musicRemoteList.setLayoutManager(llm);
@@ -105,7 +126,37 @@ public class RemoteMusicListFragment extends BaseFragment implements RemoteMusic
         //TODO 刷新recyclrview 数据
         list.addAll(bean.getSong_list());
         remoteMusicListAdapter.notifyDataSetChanged();
-//        requset_size += REQUST_SIZE;
-
+        requset_size += REQUST_SIZE;
     }
+    @Override
+    public void onSongInfo(RemoteMusicBean remoteMusicBean) {
+        ((MainActivity)getActivity()).setUrl2Service(remoteMusicBean);
+    }
+
+    //设置分割线
+    class MyItemDecoration extends RecyclerView.ItemDecoration {
+        @Override
+        public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+            super.onDraw(c, parent, state);
+            Paint paint = new Paint();
+            paint.setColor(getResources().getColor(R.color.music_fragment_card_bg));
+            int left = parent.getPaddingLeft();
+            int right = parent.getMeasuredWidth() - parent.getPaddingRight();
+            int size = parent.getChildCount();
+            for (int i = 0; i < size; i++) {
+                View child = parent.getChildAt(i);
+                int top = child.getBottom();
+                int bottom = top + ITEM_D;
+                //设置矩形的左。上。右。下边界坐标  以及画笔
+                c.drawRect(left, top, right, bottom, paint);
+            }
+        }
+
+        @Override
+        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+            super.getItemOffsets(outRect, view, parent, state);
+            outRect.set(0, 0, 0, ITEM_D);
+        }
+    }
+
 }

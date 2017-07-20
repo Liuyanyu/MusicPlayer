@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.lenovo.text_music.R;
 import com.example.lenovo.text_music.bean.RemoteMusicListBean;
+import com.example.lenovo.text_music.callback.OnRecyclerItemClick;
 import com.example.lenovo.text_music.callbreak.RecyclerClickListener;
 
 import java.util.ArrayList;
@@ -31,6 +32,12 @@ public class RemoteMusicListAdapter extends RecyclerView.Adapter<RemoteMusicList
     private RecyclerClickListener recyclerClickListener;
     // 正在播放的歌曲下标
     private int BGIndex = -1;
+
+    OnRecyclerItemClick<RemoteMusicListBean.SongListBean> onRecyclerItemClick;
+
+    public void setOnRecyclerItemClick(OnRecyclerItemClick<RemoteMusicListBean.SongListBean> onRecyclerItemClick) {
+        this.onRecyclerItemClick = onRecyclerItemClick;
+    }
 
     /**
      * 构造
@@ -66,7 +73,7 @@ public class RemoteMusicListAdapter extends RecyclerView.Adapter<RemoteMusicList
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
         holder.itemMusicListTvName.setText(list.get(position).getTitle());
         holder.itemMusicListTvArtist.setText(list.get(position).getArtist_name());
 
@@ -84,7 +91,8 @@ public class RemoteMusicListAdapter extends RecyclerView.Adapter<RemoteMusicList
             @Override
             public void onClick(View view) {
 //                调用 点击事件接口的方法
-                recyclerClickListener.onItemClick(holder.getAdapterPosition());
+//                recyclerClickListener.onItemClick(holder.getAdapterPosition());
+                onRecyclerItemClick.onClick(list.get(position));
             }
         });
     }

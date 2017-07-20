@@ -17,6 +17,7 @@ import android.widget.RemoteViews;
 
 import com.example.lenovo.text_music.R;
 import com.example.lenovo.text_music.bean.MusicBean;
+import com.example.lenovo.text_music.bean.RemoteMusicBean;
 import com.example.lenovo.text_music.manager.MusicManager;
 import com.example.lenovo.text_music.ui.activity.MainActivity;
 
@@ -253,6 +254,28 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
                 nextMusic();
             }
         });
+    }
+
+    public void setUrlMode(RemoteMusicBean remoteMusicBean){
+        if (mp != null) {
+            try {
+                //重置
+                mp.reset();
+                //设置要播放的文件
+                mp.setDataSource(remoteMusicBean.getBitrate().getFile_link());
+                //异步准备播放的资源
+                mp.prepareAsync();
+                try {
+                    //设置 准备完成监听
+                    //准备完成才可以播放 所以在设个监听的回调里
+                    mp.setOnPreparedListener(this);
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     // 播放/暂停  方法

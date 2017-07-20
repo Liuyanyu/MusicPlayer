@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import com.example.lenovo.text_music.PunlicFlags;
 import com.example.lenovo.text_music.R;
 import com.example.lenovo.text_music.bean.MusicBean;
+import com.example.lenovo.text_music.bean.RemoteMusicBean;
 import com.example.lenovo.text_music.callbreak.MusicStateListener;
 import com.example.lenovo.text_music.inject.module.FileUtil;
 import com.example.lenovo.text_music.manager.MusicManager;
@@ -223,5 +224,8 @@ public class MainActivity extends BaseActivity implements ServiceConnection, Mus
     @Override
     public void currentPositionAndDuration(int CurrentPosition, int Duration) {
 
+    }
+    public void setUrl2Service(RemoteMusicBean remoteMusicBean){
+        musicService.setUrlMode(remoteMusicBean);
     }
 }

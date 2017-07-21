@@ -9,6 +9,7 @@ import android.os.IBinder;
 import android.support.v4.app.FragmentTransaction;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 
 import com.example.lenovo.text_music.PunlicFlags;
 import com.example.lenovo.text_music.R;
@@ -27,9 +28,17 @@ import com.example.lenovo.text_music.ui.fragment.RemoteMusicMainFragment;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+import static com.example.lenovo.text_music.R.id.main_buttom;
+
 public class MainActivity extends BaseActivity implements ServiceConnection, MusicStateListener {
     public static final String DATA = "data";
     public static final String DATA_BUNDLE = "data";
+    @BindView(R.id.main_buttom)
+    FrameLayout mainButtom;
     //音乐播放服务对象
     private MusicService musicService;
     //数据源
@@ -65,6 +74,7 @@ public class MainActivity extends BaseActivity implements ServiceConnection, Mus
         }
 
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
         //获取音乐文件数据  等于数据源
         list = FileUtil.getMusicFiles(this);
@@ -97,8 +107,10 @@ public class MainActivity extends BaseActivity implements ServiceConnection, Mus
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.main_pager, mainFragment);
-        transaction.add(R.id.main_buttom, musicPlayButtoomFragment);
+        transaction.add(main_buttom, musicPlayButtoomFragment);
         transaction.commit();
+
+
     }
 
 
@@ -225,7 +237,13 @@ public class MainActivity extends BaseActivity implements ServiceConnection, Mus
     public void currentPositionAndDuration(int CurrentPosition, int Duration) {
 
     }
-    public void setUrl2Service(RemoteMusicBean remoteMusicBean){
+
+    public void setUrl2Service(RemoteMusicBean remoteMusicBean) {
         musicService.setUrlMode(remoteMusicBean);
+    }
+    @OnClick(R.id.main_buttom)
+    public void onViewClicked() {
+        Intent intent=new Intent(this,RemoteMusicActivity.class);
+        startActivity(intent);
     }
 }
